@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "cbca9798-c873-4843-8874-2da48b5d1331",
+		"name": "Memo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24654654"
+	},
+	"item": [
+		{
+			"name": "api/memos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/memos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"memos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/memos/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/memos/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"memos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/memos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"제목1\",\r\n    \"author\" : \"글쓴이1\",\r\n    \"password\" : \"12345\",\r\n    \"content\" : \"내용입니다\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/memos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"memos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/memos/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"제목1234\",\r\n    \"author\" : \"글쓴이1234\",\r\n    \"password\" : \"12345\",\r\n    \"content\" : \"수정입니다\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/memos/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"memos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/memos/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/memos/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"memos",
+						"5"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
