@@ -12,4 +12,6 @@ public class team9SpringSecurityApplication {
         SpringApplication.run(team9SpringSecurityApplication.class, args);
     }
 
+    // 브랜치 생성 확인
+
 }
