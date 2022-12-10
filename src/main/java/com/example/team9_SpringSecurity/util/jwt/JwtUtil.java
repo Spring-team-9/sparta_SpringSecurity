@@ -1,12 +1,16 @@
 package com.example.team9_SpringSecurity.util.jwt;
 
 import com.example.team9_SpringSecurity.entity.UserRoleEnum;
+import com.example.team9_SpringSecurity.util.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -25,6 +29,8 @@ public class JwtUtil {
     public static final String AUTHORIZATION_KEY = "auth";  // 헤더 키 값
     private static final String BEARER_PREFIX = "Bearer ";  // 인증 타입. 타입은 이외에도 Basic, Digest, HOBA, Mutual, AWS4-HMAC-SHA256 등이 있는데 JWT와 OAuth에 적합한건 Bearer타입
     private static final long TOKEN_TIME = 60 * 60 * 1000L; // 이게 1시간
+
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Value("${jwt.secret.key}") // @Value 필드나 메서드, 생성자의 파라미터 수준에서 값을 주입해주는 어노테이션. 해당값은 application.properties에 있음
     private String secretKey;   // 위 어노테이션에서 주입한 값이 바로 아래 변수에 대입된다.
@@ -94,4 +100,9 @@ public class JwtUtil {
         // 위의 내용에서 body부분 값을 가져오는 부분
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
+
+    // 인증 객체 생성
+    public Authentication createAuthentication(String username) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 }
