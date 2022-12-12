@@ -76,4 +76,31 @@ public class MemoController {
         return new ResponseEntity<>(messageDto, HttpStatus.OK);
     }
 
+    // 글 좋아요 클릭
+    @PostMapping("/api/memos/like/{id}")
+    public ResponseEntity<MessageDto> hitMemoLike(@PathVariable Long id, HttpServletRequest request){
+        MessageDto messageDto = memoService.hitMemoLike(id, request);
+        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+    }
+
+    // 글 좋아요 클릭
+    @DeleteMapping("/api/memos/like/{id}")
+    public ResponseEntity<MessageDto> cancelTheLike(@PathVariable Long id, HttpServletRequest request){
+        MessageDto messageDto = memoService.cancelMemoLike(id, request);
+        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+    }
+
+    // 댓글 좋아요 클릭
+    @PostMapping("/api/memos/like/{id}/{replyId}")
+    public ResponseEntity<MessageDto> hitMemoLike(@PathVariable Long id, @PathVariable Long replyId, HttpServletRequest request){
+        MessageDto messageDto = memoService.hitReplyLike(id, replyId, request);
+        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+    }
+
+    // 댓글 좋아요 클릭
+    @DeleteMapping("/api/memos/like/{id}/{replyId}")
+    public ResponseEntity<MessageDto> cancelTheLike(@PathVariable Long id, @PathVariable Long replyId, HttpServletRequest request){
+        MessageDto messageDto = memoService.cancelReplyLike(id, replyId, request);
+        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+    }
 }
