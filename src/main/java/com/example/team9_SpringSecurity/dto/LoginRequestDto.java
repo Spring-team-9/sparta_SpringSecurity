@@ -4,6 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class LoginRequestDto{
-    private String username;
-    private String password;
+    private String username;     // 사용자 이름
+    private String password;     // 사용자 패스워드
 }

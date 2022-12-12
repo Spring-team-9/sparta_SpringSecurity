@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class ReplyRequestDto {
-    private String replyContent;
+    private String replyContent;            // 댓글 내용
 }

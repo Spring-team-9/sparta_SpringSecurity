@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class UserDto extends MessageDto{
-    private User user;
+    private User user;          // User Table
 
     public UserDto(StatusEnum status, User user) {
-        super(status);
-        this.user = user;
+        super(status);          // Status Code 상속
+        this.user = user;       // UserTable
     }
 }

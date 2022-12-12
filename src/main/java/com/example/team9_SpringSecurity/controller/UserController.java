@@ -19,17 +19,19 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserService userService;
 
+    // ---------------회원가입/로그인 기능
+    // 회원가입 작성
     @PostMapping("/signup")
-    public ResponseEntity<MessageDto> signup(@RequestBody @Valid SignupRequestDto dto){
+    public ResponseEntity<MessageDto> signup(@RequestBody @Valid SignupRequestDto dto) {
         MessageDto messageDto = userService.signup(dto);
         return new ResponseEntity<>(messageDto, HttpStatus.OK);
     }
 
+    // 로그인 작성
     @PostMapping("/login")
-    public ResponseEntity<MessageDto> login(@RequestBody LoginRequestDto dto, HttpServletResponse response){
+    public ResponseEntity<MessageDto> login(@RequestBody @Valid LoginRequestDto dto, HttpServletResponse response) {
         MessageDto messageDto = userService.login(dto, response);
         return new ResponseEntity<>(messageDto, HttpStatus.OK);
     }

@@ -7,16 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemoResponseDtoBuilder implements MemoResponseDtoBuilderInterface{
+    private Long id;                    // 글 Id
+    private String title;               // 제목
+    private String username;            // 사용자 이름
+    private String content;             // 내용
+    private LocalDateTime createdAt;    // 생성일자
+    private LocalDateTime modifiedAt;   // 수정일자
+    private int totalcnt;               // 글 좋아요 count
 
-    private Long id;
-    private String title;
-    private String username;
-    private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
     private List<ReplyResponseDto> replies = new ArrayList<>();
 
-
+    // interface 메서드 재정의
     @Override
     public MemoResponseDtoBuilderInterface id(Long id) {
         this.id = id;
@@ -54,6 +55,13 @@ public class MemoResponseDtoBuilder implements MemoResponseDtoBuilderInterface{
     }
 
     @Override
+    public MemoResponseDtoBuilder totalcnt (int totalcnt) {
+        this.totalcnt = totalcnt;
+        return this;
+    }
+
+    // 댓글 List 추가 기능
+    @Override
     public MemoResponseDtoBuilderInterface addReply(List<Reply> replies) {
         for(int i=0; i<replies.size(); i++){
             this.replies.add(new ReplyResponseDto(replies.get(i)));
@@ -63,6 +71,6 @@ public class MemoResponseDtoBuilder implements MemoResponseDtoBuilderInterface{
 
     @Override
     public MemoResponseDto getMemos() {
-        return new MemoResponseDto(id, title, username, content, createdAt, modifiedAt, replies);
+        return new MemoResponseDto(id, title, username, content, createdAt, modifiedAt, replies, totalcnt);
     }
 }
