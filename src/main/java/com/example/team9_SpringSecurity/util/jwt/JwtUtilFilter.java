@@ -1,11 +1,9 @@
 package com.example.team9_SpringSecurity.util.jwt;
 
 import com.example.team9_SpringSecurity.util.error.CustomException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,8 +29,10 @@ public class JwtUtilFilter extends OncePerRequestFilter {
 
         if(token != null) {
             if(!jwtUtil.validateToken(token)){
-                jwtExceptionHandler(response, "Token Error", HttpStatus.UNAUTHORIZED.value());
-                return;
+//                jwtExceptionHandler(response, "Token Error", HttpStatus.UNAUTHORIZED.value());
+//                return;
+
+                throw new CustomException(INVALID_TOKEN);  // 이부분 수정해야함***
             }
             Claims info = jwtUtil.getUserInfoFromToken(token);
             setAuthentication(info.getSubject());
@@ -48,15 +48,16 @@ public class JwtUtilFilter extends OncePerRequestFilter {
         SecurityContextHolder.setContext(context);
     }
 
-    public void jwtExceptionHandler(HttpServletResponse response, String msg, int statusCode) {
-        response.setStatus(statusCode);
-        response.setContentType("application/json");
-        try {
-            String json = new ObjectMapper().writeValueAsString(new CustomException(INVALID_TOKEN));
-            response.getWriter().write(json);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-    }
+//    public void jwtExceptionHandler(HttpServletResponse response, String msg, int statusCode) {
+//        response.setStatus(statusCode);
+//        response.setContentType("application/json");
+//        try {
+////            String json = new ObjectMapper().writeValueAsString(new SecurityExceptionDto(statusCode, msg));
+////            response.getWriter().write(json);
+//
+//        } catch (Exception e) {
+//            log.error(e.getMessage());
+//        }
+//    }
 
 }
