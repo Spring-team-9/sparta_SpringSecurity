@@ -17,6 +17,7 @@ public enum ErrorCode {
     NO_ACCESS(HttpStatus.BAD_REQUEST, "작성자만 삭제/수정할 수 있습니다."),
     NOT_FOUND(HttpStatus.BAD_REQUEST, "NOT_FOUND"),
     LOGIN_MATCH_FAIL(HttpStatus.BAD_REQUEST, "회원을 찾을 수 없습니다."),
+    PASS_MATCH_FAIL(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다."),
 
 
     // 401 UNAUTHORIZED : 인증되지 않은 사용자
